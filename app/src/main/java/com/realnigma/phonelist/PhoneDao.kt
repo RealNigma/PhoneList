@@ -1,10 +1,7 @@
 package com.realnigma.phonelist
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Transaction
+import androidx.room.*
 
 @Dao
 interface PhoneDao {
@@ -21,5 +18,8 @@ interface PhoneDao {
 
     @Insert
     fun insertImageList(images : List<PhoneImage>)
+
+    @Update
+    fun updatePhone(phone: Phone)
 
 }

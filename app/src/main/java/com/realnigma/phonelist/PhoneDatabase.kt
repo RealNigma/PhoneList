@@ -12,7 +12,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @Database(entities = [Phone::class, PhoneImage::class], version = 1)
-@TypeConverters(Converters::class)
 abstract class PhoneDatabase : RoomDatabase() {
 
     abstract fun phoneDao() : PhoneDao
