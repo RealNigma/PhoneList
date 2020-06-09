@@ -1,4 +1,4 @@
-package com.realnigma.phonelist
+package com.realnigma.phonelist.room
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -7,5 +7,5 @@ import androidx.room.PrimaryKey
 data class Phone(
     @PrimaryKey(autoGenerate = true) val id: Int,
     val Name : String,
-    val Grade : Int
+    val Grade : Float
 )

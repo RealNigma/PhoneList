@@ -1,7 +1,11 @@
-package com.realnigma.phonelist
+package com.realnigma.phonelist.repository
 
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
+import com.realnigma.phonelist.room.Phone
+import com.realnigma.phonelist.room.PhoneDao
+import com.realnigma.phonelist.room.PhoneImage
+import com.realnigma.phonelist.room.PhoneWithImages
 
 class PhoneRepository (private val phoneDao: PhoneDao) {
 

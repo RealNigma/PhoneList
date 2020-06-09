@@ -1,4 +1,4 @@
-package com.realnigma.phonelist
+package com.realnigma.phonelist.room
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

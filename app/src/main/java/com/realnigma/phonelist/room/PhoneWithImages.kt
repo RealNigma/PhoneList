@@ -1,4 +1,4 @@
-package com.realnigma.phonelist
+package com.realnigma.phonelist.room
 
 import androidx.room.Embedded
 import androidx.room.Relation

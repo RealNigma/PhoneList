@@ -1,11 +1,9 @@
-package com.realnigma.phonelist
+package com.realnigma.phonelist.room
 
 import android.content.Context
 import androidx.room.Database
-import androidx.room.Room
 import androidx.room.Room.databaseBuilder
 import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -25,14 +23,19 @@ abstract class PhoneDatabase : RoomDatabase() {
             context : Context,
             scope: CoroutineScope
         ) : PhoneDatabase {
-            return  INSTANCE ?: synchronized(this) {
+            return  INSTANCE
+                ?: synchronized(this) {
                 val instance = databaseBuilder(
                     context.applicationContext,
                     PhoneDatabase::class.java,
                     "phone_database"
                 )
                     .fallbackToDestructiveMigration()
-                    .addCallback(PhoneDatabaseCallback(scope))
+                    .addCallback(
+                        PhoneDatabaseCallback(
+                            scope
+                        )
+                    )
                     .build()
                 INSTANCE = instance
                 instance
@@ -43,9 +46,9 @@ abstract class PhoneDatabase : RoomDatabase() {
             private val scope: CoroutineScope
         ) : RoomDatabase.Callback() {
 
-            override fun onCreate(db: SupportSQLiteDatabase) {
+            override fun onOpen(db: SupportSQLiteDatabase) {
                 super.onCreate(db)
-                INSTANCE?.let {database ->
+                INSTANCE?.let { database ->
                     scope.launch(Dispatchers.IO) {
                         populateDatabase(database.phoneDao())
                     }
@@ -53,7 +56,8 @@ abstract class PhoneDatabase : RoomDatabase() {
             }
 
             fun populateDatabase(phoneDao : PhoneDao) {
-                val phone = Phone(0,"iPhone 11", 5)
+                val phone =
+                    Phone(0, "iPhone 11", 4f)
                 phoneDao.insertPhone(phone)
             }
 

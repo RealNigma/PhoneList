@@ -1,4 +1,4 @@
-package com.realnigma.phonelist
+package com.realnigma.phonelist.room
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

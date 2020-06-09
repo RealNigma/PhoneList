@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Phone List</string>
+    <string name="phone_list_title">Список устройств</string>
+    <string name="phone_description_title">Наименование смартфона</string>
+    <string name="image_descripton">Фотография телефона</string>
 </resources>

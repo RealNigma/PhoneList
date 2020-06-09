@@ -5,6 +5,10 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.realnigma.phonelist.room.Phone
+import com.realnigma.phonelist.room.PhoneDao
+import com.realnigma.phonelist.room.PhoneDatabase
+import com.realnigma.phonelist.room.PhoneImage
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -41,7 +45,7 @@ class PhoneDaoTest {
     @Test
     @Throws(IOException::class)
     fun insertAndGetPhone() {
-        val phone = Phone(1, "Kotlin Phone", 5)
+        val phone = Phone(1, "Kotlin Phone", 5f)
         phoneDao.insertPhone(phone)
         val allPhones = phoneDao.getAllPhones().waitForValue()
         assertEquals(allPhones[0], phone)
@@ -50,10 +54,11 @@ class PhoneDaoTest {
     @Test
     @Throws(IOException::class)
     fun getAllPhones() {
-        val phone1 = Phone(1, "Kotlin Phone", 5)
+        val phone1 = Phone(1, "Kotlin Phone", 5f)
         phoneDao.insertPhone(phone1)
 
-        val phone2 = Phone(2, "Hello World Phone", 1)
+        val phone2 =
+            Phone(2, "Hello World Phone", 1f)
         phoneDao.insertPhone(phone2)
 
         val allPhones = phoneDao.getAllPhones().waitForValue()
@@ -64,10 +69,11 @@ class PhoneDaoTest {
     @Test
     @Throws(IOException::class)
     fun updatePhone() {
-        val phone = Phone(1, "Kotlin Phone", 5)
+        val phone = Phone(1, "Kotlin Phone", 5f)
         phoneDao.insertPhone(phone)
 
-        val updatedPhone = Phone(1, "Hello World Phone", 1)
+        val updatedPhone =
+            Phone(1, "Hello World Phone", 1f)
         phoneDao.updatePhone(updatedPhone)
 
         val allPhones = phoneDao.getAllPhones().waitForValue()
@@ -78,11 +84,19 @@ class PhoneDaoTest {
     @Throws(IOException::class)
     fun insertImageList() {
 
-        val phone = Phone(1, "Kotlin Phone", 5)
+        val phone = Phone(1, "Kotlin Phone", 5f)
         phoneDao.insertPhone(phone)
 
-        val phoneImage1 = PhoneImage(1,1,"www.kotlin.com/phone.jpg")
-        val phoneImage2 = PhoneImage(2,1,"www.kotlin.com/phone2.jpg")
+        val phoneImage1 = PhoneImage(
+            1,
+            1,
+            "www.kotlin.com/phone.jpg"
+        )
+        val phoneImage2 = PhoneImage(
+            2,
+            1,
+            "www.kotlin.com/phone2.jpg"
+        )
         val imageList = listOf(phoneImage1, phoneImage2)
         phoneDao.insertImageList(imageList)
 
