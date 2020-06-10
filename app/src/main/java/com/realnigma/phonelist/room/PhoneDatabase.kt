@@ -9,7 +9,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@Database(entities = [Phone::class, PhoneImage::class], version = 1)
+@Database(entities = [Phone::class, PhoneImage::class], version = 2)
 abstract class PhoneDatabase : RoomDatabase() {
 
     abstract fun phoneDao() : PhoneDao
@@ -31,11 +31,7 @@ abstract class PhoneDatabase : RoomDatabase() {
                     "phone_database"
                 )
                     .fallbackToDestructiveMigration()
-                    .addCallback(
-                        PhoneDatabaseCallback(
-                            scope
-                        )
-                    )
+                    .addCallback(PhoneDatabaseCallback(scope))
                     .build()
                 INSTANCE = instance
                 instance
@@ -46,7 +42,7 @@ abstract class PhoneDatabase : RoomDatabase() {
             private val scope: CoroutineScope
         ) : RoomDatabase.Callback() {
 
-            override fun onOpen(db: SupportSQLiteDatabase) {
+            override fun onCreate(db: SupportSQLiteDatabase) {
                 super.onCreate(db)
                 INSTANCE?.let { database ->
                     scope.launch(Dispatchers.IO) {
@@ -56,9 +52,51 @@ abstract class PhoneDatabase : RoomDatabase() {
             }
 
             fun populateDatabase(phoneDao : PhoneDao) {
-                val phone =
-                    Phone(0, "iPhone 11", 4f)
-                phoneDao.insertPhone(phone)
+                var phone = Phone(0, "Meizu M6b", 5f)
+                var urlList = listOf(
+                    "https://img.mvideo.ru/Pdb/30031750b.jpg",
+                    "https://img.mvideo.ru/Pdb/30031750b1.jpg",
+                    "https://img.mvideo.ru/Pdb/30031750b2.jpg")
+                var phoneId = phoneDao.insertPhone(phone)
+                phoneDao.insertImageList(createImageList(phoneId.toInt(), urlList))
+
+                phone = Phone(0, "Samsung Galaxy S10", 0f)
+                urlList = listOf(
+                    "https://img.mvideo.ru/Pdb/30042520b.jpg",
+                    "https://img.mvideo.ru/Pdb/30042520b1.jpg",
+                    "https://img.mvideo.ru/Pdb/30042520b2.jpg")
+                phoneId = phoneDao.insertPhone(phone)
+                phoneDao.insertImageList(createImageList(phoneId.toInt(), urlList))
+
+                phone = Phone(0, "Apple iPhone SE 2020 RED", 3f)
+                urlList = listOf(
+                    "https://img.mvideo.ru/Pdb/30049497b.jpg",
+                    "https://img.mvideo.ru/Pdb/30049497b1.jpg",
+                    "https://img.mvideo.ru/Pdb/30049497b2.jpg"
+                )
+                phoneId = phoneDao.insertPhone(phone)
+                phoneDao.insertImageList(createImageList(phoneId.toInt(), urlList))
+
+                phone = Phone(0, "Xiaomi Mi Note 10 Pro", 3f)
+                urlList = listOf(
+                    "https://img.mvideo.ru/Pdb/30046975b.jpg",
+                    "https://img.mvideo.ru/Pdb/30046975b1.jpg",
+                    "https://img.mvideo.ru/Pdb/30046975b2.jpg"
+                )
+                phoneId = phoneDao.insertPhone(phone)
+                phoneDao.insertImageList(createImageList(phoneId.toInt(), urlList))
+
+
+            }
+
+
+            fun createImageList(phoneId : Int, urlList : List<String>) : List<PhoneImage> {
+                val images : MutableList<PhoneImage> = ArrayList<PhoneImage>()
+                for (url : String in urlList) {
+                    val phoneImage = PhoneImage(0, phoneId, url)
+                    images.add(phoneImage)
+                }
+                return images
             }
 
         }

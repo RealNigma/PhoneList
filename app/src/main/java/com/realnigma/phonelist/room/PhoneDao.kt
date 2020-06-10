@@ -14,7 +14,7 @@ interface PhoneDao {
     fun getPhoneWithImageById(id : Int) : LiveData<PhoneWithImages>
 
     @Insert
-    fun insertPhone(phone : Phone)
+    fun insertPhone(phone : Phone) : Long
 
     @Insert
     fun insertImageList(images : List<PhoneImage>)

@@ -45,8 +45,8 @@ class PhoneAdapter : RecyclerView.Adapter<PhoneAdapter.PhoneViewHolder>() {
         private val phoneGrade = view.phoneGrade
 
         fun bind(phone : Phone) {
-            phoneName.text = phone.Name
-            phoneGrade.rating = phone.Grade
+            phoneName.text = phone.name
+            phoneGrade.rating = phone.grade
             phoneCard.setOnClickListener { onClick(it, phone) }
         }
 

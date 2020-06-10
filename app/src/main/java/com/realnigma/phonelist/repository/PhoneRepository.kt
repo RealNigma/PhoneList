@@ -1,5 +1,6 @@
 package com.realnigma.phonelist.repository
 
+import androidx.annotation.MainThread
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import com.realnigma.phonelist.room.Phone
@@ -25,7 +26,7 @@ class PhoneRepository (private val phoneDao: PhoneDao) {
     }
 
     @Suppress("RedundantSuspendModifier")
-    @WorkerThread
+    @MainThread
     suspend fun getPhoneWithImagesById(id: Int) : LiveData<PhoneWithImages> {
         return phoneDao.getPhoneWithImageById(id)
     }

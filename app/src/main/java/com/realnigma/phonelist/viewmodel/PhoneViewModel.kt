@@ -3,6 +3,7 @@ package com.realnigma.phonelist.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.realnigma.phonelist.repository.PhoneRepository
 import com.realnigma.phonelist.room.Phone
@@ -17,6 +18,7 @@ class PhoneViewModel (application: Application) : AndroidViewModel(application) 
 
     val phones: LiveData<List<Phone>>
     var phoneWithImagesById: LiveData<PhoneWithImages>? = null
+    var phoneId = MutableLiveData<Int>()
 
     init {
         val phoneDao = PhoneDatabase.getDatabase(application, viewModelScope).phoneDao()

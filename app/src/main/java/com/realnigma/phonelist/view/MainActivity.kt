@@ -6,10 +6,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.realnigma.phonelist.view.adapter.PhoneAdapter
+import com.realnigma.phonelist.view.adapter.PhoneImageAdapter
 import com.realnigma.phonelist.viewmodel.PhoneViewModel
 import com.realnigma.phonelist.R
+import com.realnigma.phonelist.view.adapter.PhoneAdapter
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_phone_description.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,13 +22,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val phoneAdapter = initRecyclerView()
         initViewModel(phoneAdapter)
-
     }
 
     private fun initViewModel(adapter: PhoneAdapter) {
         phoneViewModel = ViewModelProvider(this).get(PhoneViewModel::class.java)
         phoneViewModel.phones.observe(this, Observer { phones ->
-            phones?.let { adapter.updatePhones(it) }
+            phones?.let { adapter.updatePhones(it)
+            }
         })
     }
 
