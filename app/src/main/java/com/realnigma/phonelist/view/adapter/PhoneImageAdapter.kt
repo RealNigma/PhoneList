@@ -35,14 +35,20 @@ class PhoneImageAdapter : RecyclerView.Adapter<PhoneImageAdapter.PhoneImageViewH
 
     override fun onBindViewHolder(holderImage: PhoneImageViewHolder, position: Int) {
         holderImage.bind(images[position])
+        if (position == 0) { holderImage.showSwipeImage() }
     }
 
     class PhoneImageViewHolder(view : View) : RecyclerView.ViewHolder(view) {
 
         private val image = view.imageView
+        private val swipeImage = view.swipeImage
 
         fun bind(phoneImage : PhoneImage) {
             loadImage(phoneImage.imageUrl, image)
+        }
+
+        fun showSwipeImage() {
+            swipeImage.visibility = View.VISIBLE
         }
     }
 

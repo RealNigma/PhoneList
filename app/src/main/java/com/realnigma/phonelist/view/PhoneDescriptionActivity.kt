@@ -1,7 +1,11 @@
 package com.realnigma.phonelist.view
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -46,13 +50,8 @@ class PhoneDescriptionActivity : AppCompatActivity() {
 
     private fun initRecyclerView() {
         imageRecyclerView.apply {
-
-
-
             layoutManager = GridLayoutManager(context, 1, GridLayoutManager.HORIZONTAL, false)
             adapter = phoneImageAdapter
-
-
         }
     }
 

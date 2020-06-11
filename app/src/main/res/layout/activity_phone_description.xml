@@ -41,19 +41,33 @@
 
         <RatingBar
             android:id="@+id/phoneGrade"
-            android:numStars="5"
-            android:layout_margin="8dp"
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:numStars="5"
+            android:stepSize="1" />
 
-            <androidx.recyclerview.widget.RecyclerView
+        <androidx.cardview.widget.CardView
+            android:id="@+id/hintCardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            app:cardElevation="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/cardView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+        <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/imageRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="3"
-                tools:listitem="@layout/image_item" />
+                app:spanCount="1"
+                tools:listitem="@layout/image_item"/>
+
         </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
