@@ -9,6 +9,10 @@ import androidx.cardview.widget.CardView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import com.dingmouren.layoutmanagergroup.banner.BannerLayoutManager
+import com.dingmouren.layoutmanagergroup.echelon.EchelonLayoutManager
+import com.dingmouren.layoutmanagergroup.skidright.SkidRightLayoutManager
+import com.dingmouren.layoutmanagergroup.slide.SlideLayoutManager
 import com.realnigma.phonelist.R
 import com.realnigma.phonelist.room.Phone
 import com.realnigma.phonelist.view.adapter.PhoneImageAdapter
@@ -50,7 +54,7 @@ class PhoneDescriptionActivity : AppCompatActivity() {
 
     private fun initRecyclerView() {
         imageRecyclerView.apply {
-            layoutManager = GridLayoutManager(context, 1, GridLayoutManager.HORIZONTAL, false)
+            layoutManager = SkidRightLayoutManager(1.25f,0.9f)
             adapter = phoneImageAdapter
         }
     }

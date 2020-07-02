@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/phoneCard"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="10dp"
+    android:foregroundTint="#FFFFFF"
+    app:cardBackgroundColor="#FFFFFF"
     app:cardCornerRadius="6dp"
-    app:cardElevation="8dp">
+    app:cardElevation="8dp"
+    app:strokeWidth="2dp"
+    app:strokeColor="#9C27B0">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,6 +24,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:contentDescription="@string/image_description"
+            tools:layout_editor_absoluteX="-68dp"
+            tools:layout_editor_absoluteY="-30dp"
             tools:srcCompat="@tools:sample/avatars" />
 
         <ImageView

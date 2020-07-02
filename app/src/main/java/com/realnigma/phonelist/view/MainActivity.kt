@@ -6,12 +6,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.realnigma.phonelist.view.adapter.PhoneImageAdapter
+import com.dingmouren.layoutmanagergroup.skidright.SkidRightLayoutManager
 import com.realnigma.phonelist.viewmodel.PhoneViewModel
 import com.realnigma.phonelist.R
 import com.realnigma.phonelist.view.adapter.PhoneAdapter
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_phone_description.*
 
 class MainActivity : AppCompatActivity() {
 
